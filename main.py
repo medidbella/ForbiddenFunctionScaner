@@ -10,8 +10,13 @@ def main():
 	for i in range(len(AllowedFunctions)):
 		AllowedFunctions[i] = AllowedFunctions[i].strip()
 	# print(AllowedFunctions)
-	ProjectFiles = get_functins.get_files(ProjectPath)
-	print(ProjectFiles)
+	# ProjectFiles = get_functins.get_files(ProjectPath)
+	# for iter in range(len(ProjectFiles)):
+	# 	if ProjectFiles[iter] != "non":
+	# 		print(ProjectFiles[iter])
+	# 	iter+=1
+	functions = get_functins.get_file_lines("tst.txt")
+	print(functions)
 	# get_functins.get_file_lines(ProjectFiles[1])
 
 main()
