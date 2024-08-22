@@ -53,7 +53,7 @@ def	remove_returnval(str):
 
 def creat_string(str, start, end):
 	size = (end - start + 1) + 1
-	new_str = [' '] * size
+	new_str = [' '] * (size + 1)
 	i = 0
 	while start <= end:
 		new_str[i] = str[start]
@@ -62,9 +62,7 @@ def creat_string(str, start, end):
 	new_str[i] = "\0"
 	return remove_returnval(new_str)
 
-def get__created_function(FilePath):
-	if FilePath == "non":
-		return
+def get_created_function(FilePath, Functions):
 	data = open(FilePath, 'r')
 	chars = [list(line) for line in data]
 	j = 0
@@ -72,7 +70,6 @@ def get__created_function(FilePath):
 	start = 0
 	flag = 0
 	ft_idx = 0
-	function = []
 	while j < len(chars):
 		i = 0
 		while i < len(chars[j]):
@@ -86,13 +83,16 @@ def get__created_function(FilePath):
 					start = get_start(chars[j], i)
 					flag = 0
 				substring = creat_string(chars[j - flag], start, end)
-				function.append(substring)
+				Functions.append(substring)
 				ft_idx += 1
 				break
 			i += 1
 		j+=1
-	return function
 
-def get_all_fts(Files):
-	functions = []
+def get_all_fts(dir):
+	Files = get_files(dir)
+	Functions = []
 	for j in range(len(Files)):
+		if (Files[j] != "non"):
+			get_created_function(Files[j], Functions)
+	return Functions

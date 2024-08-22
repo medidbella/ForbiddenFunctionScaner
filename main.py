@@ -15,8 +15,8 @@ def main():
 	# 	if ProjectFiles[iter] != "non":
 	# 		print(ProjectFiles[iter])
 	# 	iter+=1
-	functions = get_functins.get_file_lines("tst.txt")
-	print(functions)
+	functions = get_functins.get_all_fts("./philosophers")
+	
 	# get_functins.get_file_lines(ProjectFiles[1])
 
 main()
