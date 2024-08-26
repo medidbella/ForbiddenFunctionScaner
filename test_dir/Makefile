@@ -1,17 +1,22 @@
-NAME = philo
-FILES = philo_main.c before_simulatoin.c extra_functoins.c thread_safe_functoins.c
-OBJ_FILES = $(FILES:.c=.o)
-CFLAGS =  -Wall -Wextra -Werror 
 
-$(NAME): $(OBJ_FILES)
-	cc $(OBJ_FILES) -o $(NAME)
+srv = server
+clt = client
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
+utils = minitalk_utils.c
 
-all:$(NAME)
+
+all: $(srv) $(clt)
+
+$(srv): server.c $(utils)
+	$(CC) $(CFLAGS) $(utils) server.c -o $(srv)
+
+$(clt): client.c $(utils)
+	$(CC) $(CFLAGS) $(utils) client.c -o $(clt)
 
 clean:
-	rm -f $(OBJ_FILES)
+	rm -f $(srv) $(clt)
 
 fclean: clean
-	rm -f $(NAME)
 
 re: fclean all

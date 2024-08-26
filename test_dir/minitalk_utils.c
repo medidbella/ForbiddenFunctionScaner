@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   extra_functoins.c                                  :+:      :+:    :+:   */
+/*   minitalk_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: midbella <midbella@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/25 21:04:54 by midbella          #+#    #+#             */
-/*   Updated: 2024/05/30 18:42:06 by midbella         ###   ########.fr       */
+/*   Created: 2024/01/15 13:30:56 by midbella          #+#    #+#             */
+/*   Updated: 2024/01/15 13:36:43 by midbella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include <unistd.h>
 
-int	ft_atoi(char *str)
+int	ft_atoi(const char *str)
 {
 	int	i;
 	int	result;
@@ -38,36 +38,49 @@ int	ft_atoi(char *str)
 	return (result * sign);
 }
 
-unsigned long	ft_get_time(void)
-{
-	struct timeval	curr;
-
-	gettimeofday(&curr, NULL);
-	return ((curr.tv_sec * 1000) + (curr.tv_usec / 1000));
-}
-
-void	ft_sleep(unsigned long time)
-{
-	unsigned long	start;
-
-	start = ft_get_time();
-	while (ft_get_time() - start < time)
-		usleep(1);
-	return ;
-}
-
-int	did_all_phlios_eat(t_data *ref)
+int	ft_print_s(const char *str)
 {
 	int	i;
+	int	tot;
 
+	tot = 0;
 	i = 0;
-	if (ref->max_eat_times == -1)
-		return (0);
-	while (i < ref->philos_number)
+	if (str == NULL)
 	{
-		if (ref->philos[i].meals_number < ref->max_eat_times)
-			return (0);
+		tot = write(1, "(null)", 6);
+		return (tot);
+	}
+	while (str[i])
+	{
+		tot += write (1, &str[i], 1);
 		i++;
 	}
-	return (1);
+	return (tot);
+}
+
+int	ft_print_d(int nb)
+{
+	long	n;
+	char	s[10];
+	int		j;
+	int		tot;
+
+	tot = 0;
+	n = nb;
+	if (n < 0)
+	{
+		tot += write(1, "-", 1);
+		n = n * -1;
+	}
+	j = 0;
+	while (n >= 10)
+	{
+		s[j] = (n % 10) + 48;
+		n = n / 10;
+		j++;
+	}
+	s[j] = n + 48;
+	while (j >= 0)
+		tot += write(1, &s[j--], 1);
+	return (tot);
 }

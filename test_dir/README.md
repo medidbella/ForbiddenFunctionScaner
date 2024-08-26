@@ -1,19 +1,18 @@
-this project's goal is to solve the dining philosopher's problem using threads
+This project aims to code a small data exchange program using UNIX signals.
+the challenge is that
 
-[look up =>](https://en.wikipedia.org/wiki/Dining_philosophers_problem)
+you can only use one global variable per program, also you can only use 
+two signals (SIGUSR1 and SIGUSR2)
 
->-----the program arguments:-----<
+--------------------------------------------HOW TO USE IT---------------------------------------
 
-number_of_philosophers time_to_die time_to_eat time_to_sleep [ number_of_times_each_philosopher_must_eat ]
+-1 after cloning the run the make file by typing "make"
 
-◦ number_of_philosophers: The number of philosophers and also the number of forks.
+-2 then you will have two programs (server and client) run the server first (its ID will be printed)
 
-◦ time_to_die (in milliseconds): If a philosopher didn’t start eating time_to_die milliseconds since the beginning of their last meal
-  or the beginning of the simulation, they die.
+-3 in another terminal run the client program like this (./cleint ("the-server-id" "any message you want to send")
 
-◦ time_to_eat (in milliseconds): The time it takes for a philosopher to eat. During that time, they will need to hold two forks.
+lastly, you will see that the same message is printed in the first terminal where the server is running
 
-◦ time_to_sleep (in milliseconds): The time a philosopher will spend sleeping.
-
-◦ number_of_times_each_philosopher_must_eat (optional argument): If all philosophers have eaten at least number_of_times_each_philosopher_must_eat times,
-  the simulation stops. If not specified, the simulation stops when a philosopher dies.
+if the message printed by the server is different try to increase the value given
+to the usleep function in the "client.c" file make it for example 500
