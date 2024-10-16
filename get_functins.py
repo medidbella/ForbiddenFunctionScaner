@@ -40,12 +40,14 @@ def get_end(lst, start):
 		i += 1
 	return i - 1 
 
-def creat_string(str, start, end):
+def creat_string(string, start, end):
+	while string[start] == '*':
+		start += 1
 	size = (end - start )
 	new_str = [' '] * (size + 1)
 	i = 0
 	while start <= end:
-		new_str[i] = str[start]
+		new_str[i] = string[start]
 		start+=1
 		i += 1
 	return new_str

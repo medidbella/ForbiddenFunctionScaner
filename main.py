@@ -2,8 +2,13 @@ import get_functins
 import sys
 import checker
 
+if len(sys.argv) < 2:
+    print("Usage: python3 main.py <project_path>")
+    exit(1)
+else:
+    ProjectPath = sys.argv[1]
+
 def main():
-	ProjectPath = input("INSERT THE PROJECT PATH: ")
 	print("INSERT THE PROJECT ALLOWED FUNCTIONS SEPRATED BY A ','\
 	FOLLOWED BY A NEWLINE THEN PRESS CTR+D: ")
 	UserInput = sys.stdin.read()
