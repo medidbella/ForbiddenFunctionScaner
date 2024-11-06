@@ -2,7 +2,7 @@
 
 after cloning the source code run it using the interpreter:
 
-python3 main.py '<'argument'>'
+python3 main.py 'argument'
 
 switch the argument with your C project path then you will be asked
 to input the allowed function of your project separated by a ',' character
