@@ -3,7 +3,7 @@ from colorama import Fore, Back, Style
 def is_operator(name):
 	i = 0
 	tab = ["if", "else", "else if", "switch", "case", "default",
-	"for", "while", "break", "continue", "return", "goto"]
+	"for", "while", "break", "continue", "return", "goto", "sizeof"]
 	while i < len(tab):
 		if name == list(tab[i]):
 			return 1
